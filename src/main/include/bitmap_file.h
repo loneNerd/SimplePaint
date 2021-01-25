@@ -12,11 +12,11 @@ namespace SimplePaint
    public:
       explicit CBitmapFile( HWND hwnd, HDC hdc );
 
-      CBitmapFile( const CBitmapFile& other )            = delete;
-      CBitmapFile( CBitmapFile&& other )                 = delete;
+      CBitmapFile( const CBitmapFile& other ) = delete;
+      CBitmapFile( CBitmapFile&& other ) = delete;
 
       CBitmapFile& operator=( const CBitmapFile& other ) = delete;
-      CBitmapFile& operator=( CBitmapFile&& other )      = delete;
+      CBitmapFile& operator=( CBitmapFile&& other ) = delete;
 
       ~CBitmapFile();
       void createBMPFile( LPCWSTR name );
@@ -29,6 +29,5 @@ namespace SimplePaint
       HDC     m_hTargetDC;
    };
 };
-
 
 #endif // BITMAP_H_

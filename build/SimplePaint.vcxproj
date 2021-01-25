@@ -139,13 +139,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\main\include\bitmap_file.h" />
-    <ClInclude Include="..\src\main\include\figure.h" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="..\src\main\src\bitmap_file.cpp" />
     <ClCompile Include="..\src\main\src\figure.cpp" />
     <ClCompile Include="..\src\main\src\main.cpp" />
+    <ClCompile Include="..\src\main\src\windows\drawing_window.cpp" />
+    <ClCompile Include="..\src\main\src\windows\main_window.cpp" />
+    <ClCompile Include="..\src\main\src\windows\tool_bar_window.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\main\include\bitmap_file.h" />
+    <ClInclude Include="..\src\main\include\figure.h" />
+    <ClInclude Include="..\src\main\include\windows\drawing_window.h" />
+    <ClInclude Include="..\src\main\include\windows\main_window.h" />
+    <ClInclude Include="..\src\main\include\windows\tool_bar_window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

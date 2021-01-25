@@ -7,7 +7,7 @@ CBitmapFile::CBitmapFile( HWND hwnd, HDC hdc )
    m_window     = hwnd;
    m_descriptor = hdc;
    m_hTargetDC  = CreateCompatibleDC( hdc );
-   RECT rect  = { 0 };
+   RECT rect    = { 0 };
 
    GetClientRect( hwnd, &rect );
 
@@ -32,7 +32,7 @@ PBITMAPINFO CBitmapFile::createBitmapInfoStruct()
    if ( !GetObject( m_hBitmap, sizeof( BITMAP ), &bmp ) ) 
       return 0; 
 
-   cClrBits = static_cast<WORD>( bmp.bmPlanes * bmp.bmBitsPixel ); 
+   cClrBits = static_cast< WORD >( bmp.bmPlanes * bmp.bmBitsPixel ); 
 
    if ( cClrBits == 1 ) 
    {
@@ -70,10 +70,10 @@ PBITMAPINFO CBitmapFile::createBitmapInfoStruct()
       pbmi = ( PBITMAPINFO ) LocalAlloc( LPTR, sizeof( BITMAPINFOHEADER ) );
    }
 
-   pbmi->bmiHeader.biSize = sizeof( BITMAPINFOHEADER );
-   pbmi->bmiHeader.biWidth = bmp.bmWidth;
-   pbmi->bmiHeader.biHeight = bmp.bmHeight;
-   pbmi->bmiHeader.biPlanes = bmp.bmPlanes;
+   pbmi->bmiHeader.biSize     = sizeof( BITMAPINFOHEADER );
+   pbmi->bmiHeader.biWidth    = bmp.bmWidth;
+   pbmi->bmiHeader.biHeight   = bmp.bmHeight;
+   pbmi->bmiHeader.biPlanes   = bmp.bmPlanes;
    pbmi->bmiHeader.biBitCount = bmp.bmBitsPixel;
 
    if ( cClrBits < 24 )
@@ -83,7 +83,8 @@ PBITMAPINFO CBitmapFile::createBitmapInfoStruct()
 
    pbmi->bmiHeader.biCompression = BI_RGB;
    pbmi->bmiHeader.biSizeImage = ( ( pbmi->bmiHeader.biWidth * cClrBits + 31 ) & ~31 ) / 8 * pbmi->bmiHeader.biHeight;
-   pbmi->bmiHeader.biClrImportant = 0; 
+   pbmi->bmiHeader.biClrImportant = 0;
+
    return pbmi;
 } 
 
