@@ -4,6 +4,8 @@
 
 #include <iostream>
 #include <windows.h>
+#include "memory/file_handle.h"
+#include "memory/byte_handle.h"
 
 namespace SimplePaint
 {

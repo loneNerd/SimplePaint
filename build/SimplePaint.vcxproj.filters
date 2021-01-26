@@ -56,5 +56,11 @@
     <ClInclude Include="..\src\main\include\windows\tool_bar_window.h">
       <Filter>Header Files\windows</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\main\include\memory\file_handle.h">
+      <Filter>Header Files\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\main\include\memory\byte_handle.h">
+      <Filter>Header Files\windows</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

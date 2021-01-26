@@ -2,12 +2,12 @@
 
 using namespace SimplePaint;
 
-CBitmapFile::CBitmapFile( HWND hwnd, HDC hdc )
+CBitmapFile::CBitmapFile( HWND hwnd, HDC hdc ) :
+   m_window{ hwnd },
+   m_descriptor{ hdc },
+   m_hTargetDC{ CreateCompatibleDC( hdc ) }
 {
-   m_window     = hwnd;
-   m_descriptor = hdc;
-   m_hTargetDC  = CreateCompatibleDC( hdc );
-   RECT rect    = { 0 };
+   RECT rect { 0 };
 
    GetClientRect( hwnd, &rect );
 
@@ -34,30 +34,7 @@ PBITMAPINFO CBitmapFile::createBitmapInfoStruct()
 
    cClrBits = static_cast< WORD >( bmp.bmPlanes * bmp.bmBitsPixel ); 
 
-   if ( cClrBits == 1 ) 
-   {
-      cClrBits = 1;
-   }
-   else if ( cClrBits <= 4 )
-   {
-      cClrBits = 4; 
-   }
-   else if ( cClrBits <= 8 )
-   {
-      cClrBits = 8;
-   }
-   else if ( cClrBits <= 16 )
-   {
-      cClrBits = 16;
-   }
-   else if ( cClrBits <= 24 )
-   {
-      cClrBits = 24;
-   }
-   else 
-   {
-      cClrBits = 32;
-   }
+   cClrBits = pow( 2, ceil( log( cClrBits ) / log( 2 ) ) );
 
    if ( cClrBits < 24 )
    {
@@ -89,15 +66,15 @@ PBITMAPINFO CBitmapFile::createBitmapInfoStruct()
 } 
 
 void CBitmapFile::createBMPFile( LPCWSTR name ) 
-{ 
-   HANDLE            hf;
-   BITMAPFILEHEADER  hdr;
-   PBITMAPINFOHEADER pbih;
-   LPBYTE            lpBits;
-   DWORD             dwTotal;
-   DWORD             cb;
-   BYTE              *hp;
-   DWORD             dwTmp;
+{
+   Memory::CFileHandle hf;
+   Memory::CByteHandle lpBits;
+   BITMAPFILEHEADER    hdr;
+   PBITMAPINFOHEADER   pbih;
+   DWORD               dwTotal;
+   DWORD               cb;
+   BYTE                *hp;
+   DWORD               dwTmp;
 
    PBITMAPINFO pbi = createBitmapInfoStruct();
 
@@ -148,11 +125,6 @@ void CBitmapFile::createBMPFile( LPCWSTR name )
    dwTotal = cb = pbih->biSizeImage;
    hp = lpBits;
 
-   if ( !WriteFile( hf, ( LPSTR ) hp, ( int ) cb, ( LPDWORD )&dwTmp, nullptr ) ) 
-      return; 
-
-   if ( !CloseHandle( hf ) )
-      return; 
-
-   GlobalFree( ( HGLOBAL )lpBits );
+   if ( !WriteFile( hf, ( LPSTR )hp, ( int )cb, ( LPDWORD )&dwTmp, nullptr ) ) 
+      return;
 }
