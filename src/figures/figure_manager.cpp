@@ -1,4 +1,4 @@
-#include "../../include/figures/figure_manager.h"
+#include "figure_manager.h"
 
 using namespace Figures;
 

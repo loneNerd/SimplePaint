@@ -16,10 +16,10 @@ namespace Figures
 
    struct CCoordinates
    {
-      int m_startX;
-      int m_startY;
-      int m_endX;
-      int m_endY;
+      int startX;
+      int startY;
+      int endX;
+      int endY;
    };
 
    class IFigure
@@ -46,8 +46,8 @@ namespace Figures
       virtual void draw( const HDC& hdc ) const = 0;
       virtual EFigureType getFigureType() const = 0;
 
-      virtual void setStartPosition( int x, int y ) { m_position.m_startX = x; m_position.m_startY = y; }
-      virtual void setEndPosition( int x, int y )   { m_position.m_endX   = x; m_position.m_endY   = y; }
+      virtual void setStartPosition( int x, int y ) { m_position.startX = x; m_position.startY = y; }
+      virtual void setEndPosition( int x, int y )   { m_position.endX   = x; m_position.endY   = y; }
 
       virtual void setLineWidth( unsigned int width ) { m_lineWidth = width; }
       virtual void setColor( COLORREF color )         { m_color     = color; }

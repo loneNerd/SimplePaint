@@ -1,4 +1,4 @@
-#include "../../include/windows/drawing_window.h"
+#include "drawing_window.h"
 
 using namespace Windows;
 

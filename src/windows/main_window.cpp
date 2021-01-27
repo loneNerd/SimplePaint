@@ -1,4 +1,4 @@
-#include "../../include/windows/main_window.h"
+#include "main_window.h"
 
 using namespace Windows;
 

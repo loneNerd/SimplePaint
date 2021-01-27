@@ -1,93 +1,69 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Source Files\windows">
-      <UniqueIdentifier>{59bbe7cb-d04a-41b4-8089-2947dbd82ad9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\windows">
-      <UniqueIdentifier>{ee8a614c-b10e-42b5-8daa-a25ac1571c05}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\memory">
-      <UniqueIdentifier>{49e3e160-bb52-4109-a594-da9f4f109dc9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\figures">
-      <UniqueIdentifier>{4ecdee86-202b-4709-9cc9-68641350c213}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\figures">
-      <UniqueIdentifier>{39bc129f-bc97-423a-aae9-ca4362d25118}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\src\main\src\bitmap_file.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\src\bitmap_file.cpp" />
+    <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\figures\circle_figure.cpp">
+      <Filter>figures</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\main\src\main.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\src\figures\figure_manager.cpp">
+      <Filter>figures</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\main\src\windows\drawing_window.cpp">
-      <Filter>Source Files\windows</Filter>
+    <ClCompile Include="..\src\figures\line_figure.cpp">
+      <Filter>figures</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\main\src\windows\main_window.cpp">
-      <Filter>Source Files\windows</Filter>
+    <ClCompile Include="..\src\windows\drawing_window.cpp">
+      <Filter>windows</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\main\src\windows\tool_bar_window.cpp">
-      <Filter>Source Files\windows</Filter>
+    <ClCompile Include="..\src\windows\main_window.cpp">
+      <Filter>windows</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\main\src\figures\line_figure.cpp">
-      <Filter>Source Files\figures</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\main\src\figures\circle_figure.cpp">
-      <Filter>Source Files\figures</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\main\src\figures\figure_manager.cpp">
-      <Filter>Source Files\figures</Filter>
+    <ClCompile Include="..\src\windows\tool_bar_window.cpp">
+      <Filter>windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\main\include\bitmap_file.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\src\bitmap_file.h" />
+    <ClInclude Include="..\src\figures\circle_figure.h">
+      <Filter>figures</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\main\include\windows\drawing_window.h">
-      <Filter>Header Files\windows</Filter>
+    <ClInclude Include="..\src\figures\figure.h">
+      <Filter>figures</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\main\include\windows\main_window.h">
-      <Filter>Header Files\windows</Filter>
+    <ClInclude Include="..\src\figures\figure_manager.h">
+      <Filter>figures</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\main\include\windows\tool_bar_window.h">
-      <Filter>Header Files\windows</Filter>
+    <ClInclude Include="..\src\figures\line_figure.h">
+      <Filter>figures</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\main\include\memory\byte_handle.h">
-      <Filter>Header Files\memory</Filter>
+    <ClInclude Include="..\src\windows\drawing_window.h">
+      <Filter>windows</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\main\include\memory\file_handle.h">
-      <Filter>Header Files\memory</Filter>
+    <ClInclude Include="..\src\windows\main_window.h">
+      <Filter>windows</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\main\include\Figures\figure.h">
-      <Filter>Header Files\figures</Filter>
+    <ClInclude Include="..\src\windows\tool_bar_window.h">
+      <Filter>windows</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\main\include\figures\line_figure.h">
-      <Filter>Header Files\figures</Filter>
+    <ClInclude Include="..\src\memory\bitmapinfo_handle.h">
+      <Filter>memory</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\main\include\figures\circle_figure.h">
-      <Filter>Header Files\figures</Filter>
+    <ClInclude Include="..\src\memory\byte_handle.h">
+      <Filter>memory</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\main\include\figures\figure_manager.h">
-      <Filter>Header Files\figures</Filter>
+    <ClInclude Include="..\src\memory\file_handle.h">
+      <Filter>memory</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\main\include\memory\bitmapinfo_handle.h">
-      <Filter>Header Files\memory</Filter>
-    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="figures">
+      <UniqueIdentifier>{64aed3da-18bf-432a-b754-a58be047b3a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="windows">
+      <UniqueIdentifier>{0bf9dcd3-258d-4418-a555-c8fd76031721}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="memory">
+      <UniqueIdentifier>{782edc6e-48af-4a23-8269-1023543ba111}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

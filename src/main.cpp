@@ -8,9 +8,8 @@
 // because in other way it cause a lot of error
 #include <commctrl.h>
 
-#include "../include/windows/main_window.h"
+#include "windows/main_window.h"
 
-using namespace SimplePaint;
 using namespace Windows;
 
 int APIENTRY wWinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLine, int nCmdShow )

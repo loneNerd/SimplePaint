@@ -1,4 +1,4 @@
-#include "../../include/windows/tool_bar_window.h"
+#include "tool_bar_window.h"
 
 using namespace Windows;
 

@@ -1,4 +1,4 @@
-#include "../include/bitmap_file.h"
+#include "bitmap_file.h"
 
 using namespace SimplePaint;
 
