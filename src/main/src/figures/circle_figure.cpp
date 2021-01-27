@@ -9,8 +9,8 @@ void CCircleFigure::draw( const HDC& hdc ) const
    SelectObject( hdc,  pen );
    SelectObject( hdc, GetStockObject( NULL_BRUSH ) );
 
-   Coordinates pos = this->getCoordinates();
-   Ellipse( hdc, pos.StartX, pos.StartY, pos.EndX, pos.EndY );
+   CCoordinates pos = this->getCCoordinates();
+   Ellipse( hdc, pos.m_startX, pos.m_startY, pos.m_endX, pos.m_endY );
 
    DeleteObject( pen );
 }

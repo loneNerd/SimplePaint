@@ -36,43 +36,43 @@ CToolBarWindow::~CToolBarWindow()
 
 CToolBarWindow::CToolBarWindow( const CToolBarWindow& other )
 {
-   if ( this != &other )
-   {
-      m_toolBarWindow = other.m_toolBarWindow;
-      DestroyWindow( m_toolBar );
-      m_toolBar = other.m_toolBar;
-   }
+   if ( this == &other )
+      return;
+
+   m_toolBarWindow = other.m_toolBarWindow;
+   DestroyWindow( m_toolBar );
+   m_toolBar = other.m_toolBar;
 }
 
 CToolBarWindow::CToolBarWindow( CToolBarWindow&& other )
 {
-   if ( this != &other )
-   {
-      m_toolBarWindow = other.m_toolBarWindow;
-      DestroyWindow( m_toolBar );
-      m_toolBar = other.m_toolBar;
-      DestroyWindow( other.m_toolBar );
-   }
+   if ( this == &other )
+      return;
+
+   m_toolBarWindow = other.m_toolBarWindow;
+   DestroyWindow( m_toolBar );
+   m_toolBar = other.m_toolBar;
+   DestroyWindow( other.m_toolBar );
 }
 
 CToolBarWindow& CToolBarWindow::operator=( const CToolBarWindow& other )
 {
-   if ( this != &other )
-   {
-      CToolBarWindow temp{ other };
-      std::swap( temp, *this );
-   }
+   if ( this == &other )
+      return *this;
+
+   CToolBarWindow temp{ other };
+   std::swap( temp, *this );
 
    return *this;
 }
 
 CToolBarWindow& CToolBarWindow::operator=( CToolBarWindow&& other ) noexcept
 {
-   if ( this != &other )
-   {
-      CToolBarWindow temp{ other };
-      std::swap( temp, *this );
-   }
+   if ( this == &other )
+      return *this;
+
+   CToolBarWindow temp{ other };
+   std::swap( temp, *this );
 
    return *this;
 }

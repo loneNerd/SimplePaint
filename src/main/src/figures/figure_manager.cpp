@@ -2,14 +2,14 @@
 
 using namespace Figures;
 
-void CFigureManager::addFigure( shared_ptr< CFigure > figure )
+void CFigureManager::addFigure( shared_ptr< IFigure > figure )
 {
    m_figures.push_back( figure );
 }
 
-void CFigureManager::removeFigure( shared_ptr< CFigure > figure )
+void CFigureManager::removeFigure( shared_ptr< IFigure > figure )
 {
-   std::remove( m_figures.begin(), m_figures.end(), figure );
+   m_figures.remove( figure );
 }
 
 void CFigureManager::update( const HDC& hdc )

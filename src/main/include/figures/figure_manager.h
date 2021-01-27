@@ -15,11 +15,11 @@ namespace Figures
    class CFigureManager
    {
    public:
-      void addFigure( shared_ptr< CFigure > figure );
-      void removeFigure( shared_ptr< CFigure > figure );
+      void addFigure( shared_ptr< IFigure > figure );
+      void removeFigure( shared_ptr< IFigure > figure );
       void update( const HDC& hdc );
    private:
-      list < shared_ptr < CFigure > > m_figures;
+      list < shared_ptr < IFigure > > m_figures;
    };
 
 }

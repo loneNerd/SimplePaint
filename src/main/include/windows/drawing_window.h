@@ -22,11 +22,11 @@ namespace Windows
    using std::pair;
    using std::wstring;
    using Figures::CFigureManager;
-   using Figures::CFigure;
+   using Figures::IFigure;
    using Figures::CLineFigure;
    using Figures::CCircleFigure;
    using Figures::EFigureType;
-   using Figures::Coordinates;
+   using Figures::CCoordinates;
 
    class CDrawingWindow
    {
@@ -50,14 +50,14 @@ namespace Windows
       HWND getHandler() { return m_drawingField; }
 
    private:
-      void setNewCurrentFigure();
+      std::shared_ptr< IFigure > setNewCurrentFigure();
       static LRESULT CALLBACK s_processes( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam );
       
       WNDCLASS m_drawingWindow;
       HWND     m_drawingField;
 
       CFigureManager m_figureManager;
-      std::shared_ptr< CFigure > m_currentFigure = nullptr;
+      std::shared_ptr< IFigure > m_currentFigure = nullptr;
 
       unsigned m_currentWidth = 1;
       COLORREF m_currentColor = RGB( 0, 0, 0 );

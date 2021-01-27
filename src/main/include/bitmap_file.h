@@ -6,6 +6,7 @@
 #include <windows.h>
 #include "memory/file_handle.h"
 #include "memory/byte_handle.h"
+#include "memory/bitmapinfo_handle.h"
 
 namespace SimplePaint
 {

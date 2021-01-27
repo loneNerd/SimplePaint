@@ -33,67 +33,67 @@ CDrawingWindow::~CDrawingWindow()
 
 CDrawingWindow::CDrawingWindow( const CDrawingWindow& other )
 {
-   if ( this != &other )
-   {
-      m_drawingWindow = other.m_drawingWindow;
-      DestroyWindow( m_drawingField );
-      m_drawingField = other.m_drawingField;
-      m_currentWidth = other.m_currentWidth;
-      m_currentColor = other.m_currentColor;
-      m_currentFigureType = other.m_currentFigureType;
+   if ( this == &other )
+      return;
 
-      m_currentFigure = nullptr;
-      setNewCurrentFigure();
+   m_drawingWindow = other.m_drawingWindow;
+   DestroyWindow( m_drawingField );
+   m_drawingField = other.m_drawingField;
+   m_currentWidth = other.m_currentWidth;
+   m_currentColor = other.m_currentColor;
+   m_currentFigureType = other.m_currentFigureType;
 
-      m_isDrawing = other.m_isDrawing;
-   }
+   m_currentFigure = nullptr;
+   setNewCurrentFigure();
+
+   m_isDrawing = other.m_isDrawing;
 }
 
 CDrawingWindow::CDrawingWindow( CDrawingWindow&& other )
 {
-   if ( this != &other )
-   {
-      m_drawingWindow = other.m_drawingWindow;
-      other.m_drawingField = nullptr;
+   if ( this == &other )
+      return;
 
-      DestroyWindow( m_drawingField );
-      m_drawingField = other.m_drawingField;
-      other.m_drawingField = nullptr;
+   m_drawingWindow = other.m_drawingWindow;
+   other.m_drawingField = nullptr;
 
-      m_currentWidth = other.m_currentWidth;
-      m_currentColor = other.m_currentColor;
-      m_currentFigureType = other.m_currentFigureType;
+   DestroyWindow( m_drawingField );
+   m_drawingField = other.m_drawingField;
+   other.m_drawingField = nullptr;
 
-      other.m_currentWidth = 1;
-      other.m_currentColor = 0;
-      other.m_currentFigureType = EFigureType::eFT_Line; 
+   m_currentWidth = other.m_currentWidth;
+   m_currentColor = other.m_currentColor;
+   m_currentFigureType = other.m_currentFigureType;
 
-      m_currentFigure = std::move( other.m_currentFigure );
-      other.m_currentFigure = nullptr;
-      
-      m_isDrawing = other.m_isDrawing;
-      other.m_isDrawing = false;
-   }
+   other.m_currentWidth = 1;
+   other.m_currentColor = 0;
+   other.m_currentFigureType = EFigureType::eFT_Line;
+
+   m_currentFigure = std::move( other.m_currentFigure );
+   other.m_currentFigure = nullptr;
+
+   m_isDrawing = other.m_isDrawing;
+   other.m_isDrawing = false;
 }
 
 CDrawingWindow& CDrawingWindow::operator=( const CDrawingWindow& other )
 {
-   if ( this != &other )
-   {
-      CDrawingWindow temp{ other };
-      std::swap( temp, *this );
-   }
+   if ( this == &other )
+      return *this;
+
+   CDrawingWindow temp{ other };
+   std::swap(temp, *this);
 
    return *this;
 }
 
 CDrawingWindow& CDrawingWindow::operator=( CDrawingWindow&& other )
 {
-   if ( this != &other )
-   {
-      CDrawingWindow temp{ other };
-      std::swap( temp, *this );
-   }
+   if ( this == &other )
+      return *this;
+
+   CDrawingWindow temp{ other };
+   std::swap(temp, *this);
 
    return *this;
 }
@@ -153,7 +153,7 @@ LRESULT CALLBACK CDrawingWindow::processes( HWND hWnd, UINT uMsg, WPARAM wParam,
       case WM_LBUTTONDOWN:
       {
          m_isDrawing = true;
-         setNewCurrentFigure();
+         m_currentFigure = setNewCurrentFigure();
          m_currentFigure->setStartPosition( static_cast< long >( LOWORD( lParam ) ),
                                             static_cast< long >( HIWORD( lParam ) ) );
          break;
@@ -165,24 +165,24 @@ LRESULT CALLBACK CDrawingWindow::processes( HWND hWnd, UINT uMsg, WPARAM wParam,
             short divX = 1;
             short divY = 1;
 
-            Coordinates coord      = m_currentFigure->getCoordinates();
+            CCoordinates coord      = m_currentFigure->getCCoordinates();
             unsigned int LineWidth = m_currentFigure->getLineWidth();
 
-            if ( coord.StartX > coord.EndX )
+            if ( coord.m_startX > coord.m_endX )
             {
                divX = -divX;
             }
 
-            if ( coord.StartY > coord.EndY )
+            if ( coord.m_startY > coord.m_endY )
             {
                divY = -divY;
             }
 
             InvalidateRgn( hWnd,
-                           CreateRectRgn( coord.StartX - divX * LineWidth,
-                                          coord.StartY - divY * LineWidth,
-                                          coord.EndX   + divX * LineWidth,
-                                          coord.EndY   + divY * LineWidth ),
+                           CreateRectRgn( coord.m_startX - divX * LineWidth,
+                                          coord.m_startY - divY * LineWidth,
+                                          coord.m_endX   + divX * LineWidth,
+                                          coord.m_endY   + divY * LineWidth ),
                            true );
 
             m_currentFigure->setEndPosition( static_cast< long >( LOWORD( lParam ) ),
@@ -210,20 +210,18 @@ LRESULT CALLBACK CDrawingWindow::processes( HWND hWnd, UINT uMsg, WPARAM wParam,
    return DefWindowProc( hWnd, uMsg, wParam, lParam );
 }
 
-void CDrawingWindow::setNewCurrentFigure()
+std::shared_ptr< IFigure > CDrawingWindow::setNewCurrentFigure()
 {
    switch ( m_currentFigureType )
    {
       case EFigureType::eFT_Circle:
       {
-         m_currentFigure = std::shared_ptr< CCircleFigure >( new CCircleFigure( 0, 0, 0, 0, m_currentWidth, m_currentColor ) );
-         break;
+         return std::make_shared< CCircleFigure >( 0, 0, 0, 0, m_currentWidth, m_currentColor );
       }
       case EFigureType::eFT_Line:
       default:
       {
-         m_currentFigure = std::shared_ptr< CLineFigure >( new CLineFigure( 0, 0, 0, 0, m_currentWidth, m_currentColor ) );
-         break;
+         return std::make_shared< CLineFigure >( 0, 0, 0, 0, m_currentWidth, m_currentColor );
       }
    }
 }

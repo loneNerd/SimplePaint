@@ -6,15 +6,15 @@
 
 namespace Figures
 {
-   class CLineFigure : public CFigure
+   class CLineFigure : public IFigure
    {
    public:
-      CLineFigure() : CFigure() 
+      CLineFigure() : IFigure() 
       {
       }
 
       CLineFigure( int x1, int y1, int x2, int y2, unsigned width, COLORREF color ) :
-         CFigure( x1, y1, x2, y2, width, color ) 
+         IFigure( x1, y1, x2, y2, width, color ) 
       {
       }
 

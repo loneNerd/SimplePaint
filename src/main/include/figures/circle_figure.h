@@ -6,15 +6,15 @@
 
 namespace Figures
 {
-   class CCircleFigure : public CFigure
+   class CCircleFigure : public IFigure
    {
    public:
-      explicit CCircleFigure() : CFigure() 
+      explicit CCircleFigure() : IFigure() 
       {
       }
 
       explicit CCircleFigure( int x1, int y1, int x2, int y2, unsigned width, COLORREF color ) :
-         CFigure( x1, y1, x2, y2, width, color )
+         IFigure( x1, y1, x2, y2, width, color )
       {
       }
 

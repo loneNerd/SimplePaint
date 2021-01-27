@@ -24,7 +24,8 @@ namespace Memory
 
 		~CByteHandle()
 		{
-			GlobalFree( ( HGLOBAL ) m_h );
+			if ( m_h != NULL )
+				GlobalFree( ( HGLOBAL ) m_h );
 		}
 
 		operator LPBYTE() const

@@ -8,9 +8,9 @@ void CLineFigure::draw( const HDC& hdc ) const
 
    SelectObject( hdc, pen );
 
-   Coordinates pos = this->getCoordinates();
-   MoveToEx( hdc, pos.StartX, pos.StartY, nullptr );
-   LineTo( hdc, pos.EndX, pos.EndY );
+   CCoordinates pos = this->getCCoordinates();
+   MoveToEx( hdc, pos.m_startX, pos.m_startY, nullptr );
+   LineTo( hdc, pos.m_endX, pos.m_endY );
 
    DeleteObject( pen );
 }

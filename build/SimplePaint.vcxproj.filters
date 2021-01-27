@@ -86,5 +86,8 @@
     <ClInclude Include="..\src\main\include\figures\figure_manager.h">
       <Filter>Header Files\figures</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\main\include\memory\bitmapinfo_handle.h">
+      <Filter>Header Files\memory</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

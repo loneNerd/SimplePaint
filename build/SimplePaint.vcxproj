@@ -154,6 +154,7 @@
     <ClInclude Include="..\src\main\include\Figures\figure.h" />
     <ClInclude Include="..\src\main\include\figures\figure_manager.h" />
     <ClInclude Include="..\src\main\include\figures\line_figure.h" />
+    <ClInclude Include="..\src\main\include\memory\bitmapinfo_handle.h" />
     <ClInclude Include="..\src\main\include\memory\byte_handle.h" />
     <ClInclude Include="..\src\main\include\memory\file_handle.h" />
     <ClInclude Include="..\src\main\include\windows\drawing_window.h" />

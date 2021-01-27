@@ -76,9 +76,9 @@ void CBitmapFile::createBMPFile( LPCWSTR name )
    BYTE                *hp;
    DWORD               dwTmp;
 
-   PBITMAPINFO pbi = createBitmapInfoStruct();
+   Memory::CBitmapInfoHandle pbi = createBitmapInfoStruct();
 
-   pbih   = ( PBITMAPINFOHEADER )pbi;
+   pbih   = pbi;
    lpBits = ( LPBYTE ) GlobalAlloc( GMEM_FIXED, pbih->biSizeImage );
 
    if ( !lpBits ) 
