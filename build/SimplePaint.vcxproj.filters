@@ -19,12 +19,18 @@
     <Filter Include="Header Files\windows">
       <UniqueIdentifier>{ee8a614c-b10e-42b5-8daa-a25ac1571c05}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\memory">
+      <UniqueIdentifier>{49e3e160-bb52-4109-a594-da9f4f109dc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\figures">
+      <UniqueIdentifier>{4ecdee86-202b-4709-9cc9-68641350c213}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\figures">
+      <UniqueIdentifier>{39bc129f-bc97-423a-aae9-ca4362d25118}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main\src\bitmap_file.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\main\src\figure.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\src\main\src\main.cpp">
@@ -39,12 +45,18 @@
     <ClCompile Include="..\src\main\src\windows\tool_bar_window.cpp">
       <Filter>Source Files\windows</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\main\src\figures\line_figure.cpp">
+      <Filter>Source Files\figures</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\main\src\figures\circle_figure.cpp">
+      <Filter>Source Files\figures</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\main\src\figures\figure_manager.cpp">
+      <Filter>Source Files\figures</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\main\include\bitmap_file.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\main\include\figure.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\src\main\include\windows\drawing_window.h">
@@ -56,11 +68,23 @@
     <ClInclude Include="..\src\main\include\windows\tool_bar_window.h">
       <Filter>Header Files\windows</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\main\include\memory\file_handle.h">
-      <Filter>Header Files\windows</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\main\include\memory\byte_handle.h">
-      <Filter>Header Files\windows</Filter>
+      <Filter>Header Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\main\include\memory\file_handle.h">
+      <Filter>Header Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\main\include\Figures\figure.h">
+      <Filter>Header Files\figures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\main\include\figures\line_figure.h">
+      <Filter>Header Files\figures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\main\include\figures\circle_figure.h">
+      <Filter>Header Files\figures</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\main\include\figures\figure_manager.h">
+      <Filter>Header Files\figures</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

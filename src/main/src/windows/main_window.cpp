@@ -172,7 +172,7 @@ LRESULT CALLBACK CMainWindow::processes( HWND hWnd, UINT uMsg, WPARAM wParam, LP
                if ( HIWORD( wParam ) == CBN_SELENDOK )
                {
                   int i = SendMessage( m_wndComboBox, CB_GETCURSEL, 0, 0 );
-                  drawingWindow->getCurrentFigure().setFigureType( m_figureAssociations[ i ].second );
+                  drawingWindow->switchFigureType( m_figureAssociations[ i ].second );
                }
             }
             case eWEID_TextBoxID:
@@ -189,15 +189,13 @@ LRESULT CALLBACK CMainWindow::processes( HWND hWnd, UINT uMsg, WPARAM wParam, LP
                   }
                   else if ( nValue <= 32u )
                   {
-                     drawingWindow->getCurrentFigure().setLineWidth( nValue );
+                     drawingWindow->setCurrentPenWidth( nValue );
                   }
                   else
                   {
                      MessageBox( hWnd, TEXT( "Too large value, maximum 32" ), TEXT( "Warning" ), MB_OK | MB_ICONWARNING );
                      SetDlgItemInt( hWnd, eWEID_TextBoxID, 32u, TRUE );
                   }
-
-
                }
                break;
             }
@@ -205,7 +203,7 @@ LRESULT CALLBACK CMainWindow::processes( HWND hWnd, UINT uMsg, WPARAM wParam, LP
             {
                if ( ChooseColor( &m_cc ) )
                {
-                  drawingWindow->getCurrentFigure().setColor( ( COLORREF )m_cc.rgbResult );
+                  drawingWindow->setCurrentColor( ( COLORREF )m_cc.rgbResult );
                }
 
                break;
@@ -213,7 +211,6 @@ LRESULT CALLBACK CMainWindow::processes( HWND hWnd, UINT uMsg, WPARAM wParam, LP
          }
          break;
       }
-
       case WM_SIZE:
       {
          RECT rc {};
@@ -221,7 +218,6 @@ LRESULT CALLBACK CMainWindow::processes( HWND hWnd, UINT uMsg, WPARAM wParam, LP
          SetWindowPos( toolBarWindow->getHandler(), nullptr, 0, 0, rc.right - rc.left, 50, 0 );
          break;
       }
-
       case WM_DESTROY:
       {
          PostQuitMessage( 0 );

@@ -2,7 +2,7 @@
 #ifndef WINDOWS_DRAWING_WINDOW_H_
 #define WINDOWS_DRAWING_WINDOW_H_
 
-#include <vector>
+#include <list>
 #include <string>
 #include <utility>
 #include <windows.h>
@@ -11,16 +11,22 @@
 #include <commctrl.h>
 
 #include "../bitmap_file.h"
-#include "../figure.h"
+#include "../figures/figure.h"
+#include "../figures/figure_manager.h"
+#include "../figures/line_figure.h"
+#include "../figures/circle_figure.h"
 
 namespace Windows
 {
-   using std::vector;
+   using std::list;
    using std::pair;
    using std::wstring;
-   using SimplePaint::CFigure;
-   using SimplePaint::EFigureType;
-   using SimplePaint::Coordinates;
+   using Figures::CFigureManager;
+   using Figures::CFigure;
+   using Figures::CLineFigure;
+   using Figures::CCircleFigure;
+   using Figures::EFigureType;
+   using Figures::Coordinates;
 
    class CDrawingWindow
    {
@@ -37,17 +43,25 @@ namespace Windows
 
       LRESULT CALLBACK processes( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam );
 
-      CFigure& getCurrentFigure() { return m_currentFigure; }
-      HWND     getHandler()       { return m_drawingField; }
-      
+      void setCurrentColor( COLORREF color )    { m_currentColor = color; }
+      void setCurrentPenWidth( unsigned width ) { m_currentWidth = width; }
+      void switchFigureType( EFigureType type ) { m_currentFigureType = type; }
+
+      HWND getHandler() { return m_drawingField; }
+
    private:
+      void setNewCurrentFigure();
       static LRESULT CALLBACK s_processes( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam );
       
       WNDCLASS m_drawingWindow;
       HWND     m_drawingField;
 
-      vector< CFigure > m_figures;
-      CFigure m_currentFigure;
+      CFigureManager m_figureManager;
+      std::shared_ptr< CFigure > m_currentFigure = nullptr;
+
+      unsigned m_currentWidth = 1;
+      COLORREF m_currentColor = RGB( 0, 0, 0 );
+      EFigureType m_currentFigureType = EFigureType::eFT_Line;
 
       bool m_isDrawing = false;
    };

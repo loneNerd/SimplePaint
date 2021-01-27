@@ -2,6 +2,7 @@
 #ifndef WINDOWS_MAIN_WINDOW_H_
 #define WINDOWS_MAIN_WINDOW_H_
 
+#include <algorithm>
 #include <memory>
 #include <vector>
 #include <string>
@@ -14,7 +15,9 @@
 #include "drawing_window.h"
 #include "tool_bar_window.h"
 #include "../bitmap_file.h"
-#include "../figure.h"
+#include "../figures/figure.h"
+#include "../figures/circle_figure.h"
+#include "../figures/line_figure.h"
 
 namespace Windows
 {
@@ -30,8 +33,7 @@ namespace Windows
    using std::vector;
    using std::pair;
    using std::wstring;
-   using SimplePaint::CFigure;
-   using SimplePaint::EFigureType;
+   using Figures::EFigureType;
 
    class CMainWindow
    {

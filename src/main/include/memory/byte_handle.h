@@ -18,7 +18,7 @@ namespace Memory
 		}
 
 		CByteHandle( LPBYTE h ) :
-			m_h(h)
+			m_h( h )
 		{
 		}
 
