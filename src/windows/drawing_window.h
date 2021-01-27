@@ -33,11 +33,10 @@ namespace Windows
    public:
       explicit CDrawingWindow( HINSTANCE hInstance, HWND parent, int nCmdShow );
 
-      CDrawingWindow( const CDrawingWindow& other );
-      CDrawingWindow( CDrawingWindow&& other );
-
-      CDrawingWindow& operator=( const CDrawingWindow& other );
-      CDrawingWindow& operator=( CDrawingWindow&& other );
+      CDrawingWindow( const CDrawingWindow& other )            = delete;
+      CDrawingWindow( CDrawingWindow&& other )                 = delete;
+      CDrawingWindow& operator=( const CDrawingWindow& other ) = delete;
+      CDrawingWindow& operator=( CDrawingWindow&& other )      = delete;
 
       ~CDrawingWindow();
 

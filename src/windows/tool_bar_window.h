@@ -15,10 +15,10 @@ namespace Windows
    public:
       explicit CToolBarWindow( HINSTANCE hInstance, HWND parent, int nCmdShow );
 
-      CToolBarWindow( const CToolBarWindow& other );
-      CToolBarWindow( CToolBarWindow&& other );
-      CToolBarWindow& operator=( const CToolBarWindow& other );
-      CToolBarWindow& operator=( CToolBarWindow&& other) noexcept;
+      CToolBarWindow( const CToolBarWindow& other )            = delete;
+      CToolBarWindow( CToolBarWindow&& other )                 = delete;
+      CToolBarWindow& operator=( const CToolBarWindow& other ) = delete;
+      CToolBarWindow& operator=( CToolBarWindow&& other)       = delete;
       ~CToolBarWindow();
 
       LRESULT CALLBACK processes( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam );

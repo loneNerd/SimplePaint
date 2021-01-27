@@ -31,50 +31,8 @@ CToolBarWindow::CToolBarWindow( HINSTANCE hInstance, HWND parent, int nCmdShow )
 
 CToolBarWindow::~CToolBarWindow()
 {
-   DestroyWindow( m_toolBar );
-}
-
-CToolBarWindow::CToolBarWindow( const CToolBarWindow& other )
-{
-   if ( this == &other )
-      return;
-
-   m_toolBarWindow = other.m_toolBarWindow;
-   DestroyWindow( m_toolBar );
-   m_toolBar = other.m_toolBar;
-}
-
-CToolBarWindow::CToolBarWindow( CToolBarWindow&& other )
-{
-   if ( this == &other )
-      return;
-
-   m_toolBarWindow = other.m_toolBarWindow;
-   DestroyWindow( m_toolBar );
-   m_toolBar = other.m_toolBar;
-   DestroyWindow( other.m_toolBar );
-}
-
-CToolBarWindow& CToolBarWindow::operator=( const CToolBarWindow& other )
-{
-   if ( this == &other )
-      return *this;
-
-   CToolBarWindow temp{ other };
-   std::swap( temp, *this );
-
-   return *this;
-}
-
-CToolBarWindow& CToolBarWindow::operator=( CToolBarWindow&& other ) noexcept
-{
-   if ( this == &other )
-      return *this;
-
-   CToolBarWindow temp{ other };
-   std::swap( temp, *this );
-
-   return *this;
+   if ( m_toolBar != nullptr )
+      DestroyWindow( m_toolBar );
 }
 
 LRESULT CToolBarWindow::s_processes( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam )
@@ -109,14 +67,6 @@ LRESULT CALLBACK CToolBarWindow::processes( HWND hWnd, UINT uMsg, WPARAM wParam,
 {
    switch ( uMsg )
    {
-      case WM_PAINT:
-      {
-         PAINTSTRUCT ps;
-         HDC hdc = BeginPaint( hWnd, &ps );
-
-         EndPaint( hWnd, &ps );
-         break;
-      }
       case WM_DESTROY:
       {
          PostQuitMessage( 0 );

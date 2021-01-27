@@ -131,14 +131,6 @@ LRESULT CALLBACK CMainWindow::processes( HWND hWnd, UINT uMsg, WPARAM wParam, LP
 {
    switch ( uMsg )
    {
-      case WM_PAINT:
-      {
-         PAINTSTRUCT ps;
-         HDC hdc = BeginPaint( hWnd, &ps );
-
-         EndPaint( hWnd, &ps );
-         break;
-      }
       case WM_COMMAND:
       {
          switch ( LOWORD( wParam ) )
