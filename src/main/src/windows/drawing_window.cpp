@@ -128,26 +128,38 @@ LRESULT CDrawingWindow::s_processes( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM
 
 LRESULT CALLBACK CDrawingWindow::processes( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam )
 {
+   
+
    switch ( uMsg )
    {
       case WM_PAINT:
       {
          PAINTSTRUCT ps;
-         HDC hdc = BeginPaint( hWnd, &ps );
-         
-         if ( hdc == NULL )
-         {
-            SetLastError( 0 );
-         }
 
-         m_figureManager.update( hdc );
+         HDC hdc        = BeginPaint( hWnd, &ps );
+         HDC hdcMem     = CreateCompatibleDC( hdc );
+         HBITMAP hbmMem = CreateCompatibleBitmap( hdc, 800, 600 );
+         HANDLE hOld    = SelectObject( hdcMem, hbmMem );
+
+         RECT rc;
+         SetRect( &rc, 0, 0, 800, 600 );
+         FillRect( hdcMem, &rc, ( HBRUSH )GetStockObject( WHITE_BRUSH ) );
+
+         m_figureManager.update( hdcMem );
 
          if ( m_currentFigure != nullptr )
          {
-            m_currentFigure->draw( hdc );
+            m_currentFigure->draw( hdcMem );
          }
 
+         BitBlt( hdc, 0, 0, 800, 600, hdcMem, 0, 0, SRCCOPY );
+
+         SelectObject( hdcMem, hOld );
+         DeleteObject( hbmMem );
+         DeleteDC( hdcMem );
+
          EndPaint( hWnd, &ps );
+
          break;
       }
       case WM_LBUTTONDOWN:
@@ -162,28 +174,7 @@ LRESULT CALLBACK CDrawingWindow::processes( HWND hWnd, UINT uMsg, WPARAM wParam,
       {
          if ( m_isDrawing )
          {
-            short divX = 1;
-            short divY = 1;
-
-            CCoordinates coord      = m_currentFigure->getCCoordinates();
-            unsigned int LineWidth = m_currentFigure->getLineWidth();
-
-            if ( coord.m_startX > coord.m_endX )
-            {
-               divX = -divX;
-            }
-
-            if ( coord.m_startY > coord.m_endY )
-            {
-               divY = -divY;
-            }
-
-            InvalidateRgn( hWnd,
-                           CreateRectRgn( coord.m_startX - divX * LineWidth,
-                                          coord.m_startY - divY * LineWidth,
-                                          coord.m_endX   + divX * LineWidth,
-                                          coord.m_endY   + divY * LineWidth ),
-                           true );
+            InvalidateRect(hWnd, nullptr, false);
 
             m_currentFigure->setEndPosition( static_cast< long >( LOWORD( lParam ) ),
                                              static_cast< long >( HIWORD( lParam ) ) );
